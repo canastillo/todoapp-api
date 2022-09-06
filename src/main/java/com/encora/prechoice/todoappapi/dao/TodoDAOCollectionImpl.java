@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class TodoDaoCollectionImpl implements TodoDao{
+public class TodoDAOCollectionImpl implements TodoDAO {
 
     TodosCollection todosCollection = new TodosCollection();
 

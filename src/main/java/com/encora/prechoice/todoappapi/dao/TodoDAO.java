@@ -5,7 +5,7 @@ import com.encora.prechoice.todoappapi.domain.Todo;
 import java.util.List;
 import java.util.Optional;
 
-public interface TodoDao {
+public interface TodoDAO {
     Todo save(Todo todo);
     Optional<Todo> findById(Integer id);
     List<Todo> findAll();
