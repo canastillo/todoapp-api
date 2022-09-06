@@ -9,6 +9,8 @@ import java.util.Optional;
 @Repository
 public class TodoDaoCollectionImpl implements TodoDao{
 
+    TodosCollection todosCollection = new TodosCollection();
+
     @Override
     public Todo save(Todo todo) {
         return null;
@@ -21,7 +23,7 @@ public class TodoDaoCollectionImpl implements TodoDao{
 
     @Override
     public List<Todo> findAll() {
-        return null;
+        return todosCollection.getTodos();
     }
 
     @Override
