@@ -15,4 +15,8 @@ public class TodoService {
     public List<Todo> getTodos() {
         return dao.findAll();
     }
+
+    public Todo createTodo(Todo todo) {
+        return dao.save(todo);
+    }
 }

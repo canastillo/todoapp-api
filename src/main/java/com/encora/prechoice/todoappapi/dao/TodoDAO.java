@@ -9,7 +9,7 @@ public interface TodoDAO {
     Todo save(Todo todo);
     Optional<Todo> findById(Integer id);
     List<Todo> findAll();
-    long count();
+    int count();
     void delete(Todo todo);
     boolean existsById(Integer id);
 }

@@ -1,5 +1,6 @@
 package com.encora.prechoice.todoappapi.dao;
 
+import com.encora.prechoice.todoappapi.db.TodosCollection;
 import com.encora.prechoice.todoappapi.domain.Todo;
 import org.springframework.stereotype.Repository;
 
@@ -9,11 +10,13 @@ import java.util.Optional;
 @Repository
 public class TodoDAOCollectionImpl implements TodoDAO {
 
-    TodosCollection todosCollection = new TodosCollection();
+    private TodosCollection todosCollection = new TodosCollection();
 
     @Override
     public Todo save(Todo todo) {
-        return null;
+        System.out.println("El DAO recibio " + todo);
+        Todo updatedTodo = todosCollection.addTodo(todo);
+        return updatedTodo;
     }
 
     @Override
@@ -27,8 +30,8 @@ public class TodoDAOCollectionImpl implements TodoDAO {
     }
 
     @Override
-    public long count() {
-        return 0;
+    public int count() {
+        return todosCollection.getSize();
     }
 
     @Override
