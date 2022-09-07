@@ -5,28 +5,43 @@ import java.time.LocalDateTime;
 
 public class Todo {
     private int id;
-    private String task;
+    private String name;
     private Priority priority;
     private Boolean done;
     private LocalDateTime creationDate;
     private LocalDate dueDate;
     private LocalDateTime completedDate;
 
-    public Todo(int id, String task, Priority priority, LocalDateTime creationDate) {
-        this.id = id;
-        this.task = task;
-        this.priority = priority;
+    public Todo() {
         this.done = false;
-        this.creationDate = creationDate;
+        System.out.println("Default constructor");
     }
 
-    public Todo(int id, String task, Priority priority, LocalDateTime creationDate, LocalDate dueDate) {
-        this.id = id;
-        this.task = task;
+    public Todo(String name, Priority priority, LocalDateTime creationDate) {
+
+        this();
+        this.name = name;
         this.priority = priority;
-        this.done = false;
         this.creationDate = creationDate;
+        System.out.println("Segundo constructor. Name " + name);
+    }
+
+    public Todo(String name, Priority priority, LocalDateTime creationDate, LocalDate dueDate) {
+        this(name, priority, creationDate);
         this.dueDate = dueDate;
+        System.out.println("Tercer constructor. Name " + name);
+    }
+
+    public Todo(int id, String name, Priority priority, LocalDateTime creationDate) {
+        this(name, priority, creationDate);
+        this.id = id;
+        System.out.println("Cuarto constructor. Name " + name);
+    }
+
+    public Todo(int id, String name, Priority priority, LocalDateTime creationDate, LocalDate dueDate) {
+        this(name, priority, creationDate, dueDate);
+        this.id = id;
+        System.out.println("Quinto constructor. Name " + name);
     }
 
     public int getId() {
@@ -37,12 +52,12 @@ public class Todo {
         this.id = id;
     }
 
-    public String getTask() {
-        return task;
+    public String getName() {
+        return name;
     }
 
-    public void setTask(String task) {
-        this.task = task;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Priority getPriority() {
@@ -83,5 +98,18 @@ public class Todo {
 
     public void setCompletedDate(LocalDateTime completedDate) {
         this.completedDate = completedDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Todo{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", priority=" + priority +
+                ", done=" + done +
+                ", creationDate=" + creationDate +
+                ", dueDate=" + dueDate +
+                ", completedDate=" + completedDate +
+                '}';
     }
 }
