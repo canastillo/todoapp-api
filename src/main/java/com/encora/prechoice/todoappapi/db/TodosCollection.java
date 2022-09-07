@@ -1,4 +1,4 @@
-package com.encora.prechoice.todoappapi.dao;
+package com.encora.prechoice.todoappapi.db;
 
 import com.encora.prechoice.todoappapi.domain.Priority;
 import com.encora.prechoice.todoappapi.domain.Todo;
