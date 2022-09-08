@@ -14,24 +14,23 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/todos")
 public class TodoController {
-
     @Autowired
-    TodoService todoService;
+    private TodoService todoService;
 
     @GetMapping()
-    ResponseEntity<List<Todo>> getTodos() {
+    public ResponseEntity<List<Todo>> getTodos() {
         List<Todo> response = todoService.getTodos();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping()
-    ResponseEntity<Todo> createTodo(@RequestBody Todo todo) {
+    public ResponseEntity<Todo> createTodo(@RequestBody Todo todo) {
         Todo newTodo = todoService.createTodo(todo);
         return new ResponseEntity<>(newTodo, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}/done")
-    ResponseEntity<Optional<Todo>> updateDone(@PathVariable(value = "id") Integer id) {
+    public ResponseEntity<Optional<Todo>> updateDone(@PathVariable(value = "id") Integer id) {
         Optional<Todo> updatedTodo = todoService.updateTodoStatus(id, true);
 
         if (updatedTodo.isPresent())
@@ -41,7 +40,7 @@ public class TodoController {
     }
 
     @PutMapping("/{id}/undone")
-    ResponseEntity<Optional<Todo>> updateUndone(@PathVariable(value = "id") Integer id) {
+    public ResponseEntity<Optional<Todo>> updateUndone(@PathVariable(value = "id") Integer id) {
         Optional<Todo> updatedTodo = todoService.updateTodoStatus(id, false);
 
         if (updatedTodo.isPresent())
