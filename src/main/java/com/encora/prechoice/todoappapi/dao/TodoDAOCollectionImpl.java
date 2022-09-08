@@ -1,12 +1,16 @@
 package com.encora.prechoice.todoappapi.dao;
 
 import com.encora.prechoice.todoappapi.db.TodosCollection;
+import com.encora.prechoice.todoappapi.domain.Priority;
 import com.encora.prechoice.todoappapi.domain.Todo;
 import org.springframework.stereotype.Repository;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 public class TodoDAOCollectionImpl implements TodoDAO {
@@ -20,6 +24,11 @@ public class TodoDAOCollectionImpl implements TodoDAO {
     }
 
     @Override
+    public List<Todo> findAll() {
+        return todosCollection.getTodos();
+    }
+
+    @Override
     public Optional<Todo> findById(Integer id) {
         Optional<Todo> foundTodo = todosCollection.getTodos().stream()
                 .filter(td -> td.getId() == id).findFirst();
@@ -28,9 +37,19 @@ public class TodoDAOCollectionImpl implements TodoDAO {
     }
 
     @Override
-    public List<Todo> findAll() {
-        return todosCollection.getTodos();
+    public List<Todo> findByPriority(Priority priority) {
+        List<Todo> todosByPriority = todosCollection.getTodos().stream()
+                .filter(todo -> todo.getPriority().equals(priority)).collect(Collectors.toList());
+        return todosByPriority;
     }
+
+    @Override
+    public List<Todo> findByState(boolean state) {
+        List<Todo> todosByState = todosCollection.getTodos().stream()
+                .filter(todo -> todo.getDone() == state).collect(Collectors.toList());
+        return todosByState;
+    }
+
 
     @Override
     public int count() {
