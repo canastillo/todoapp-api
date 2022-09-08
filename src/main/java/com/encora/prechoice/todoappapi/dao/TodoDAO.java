@@ -10,6 +10,7 @@ public interface TodoDAO {
     Optional<Todo> findById(Integer id);
     List<Todo> findAll();
     int count();
-    void delete(Todo todo);
+    boolean delete(Todo todo);
     boolean existsById(Integer id);
+    Optional<Todo> updateStatus(int id, Boolean status);
 }

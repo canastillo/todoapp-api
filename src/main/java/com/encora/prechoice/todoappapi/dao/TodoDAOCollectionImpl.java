@@ -4,6 +4,7 @@ import com.encora.prechoice.todoappapi.db.TodosCollection;
 import com.encora.prechoice.todoappapi.domain.Todo;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,14 +15,16 @@ public class TodoDAOCollectionImpl implements TodoDAO {
 
     @Override
     public Todo save(Todo todo) {
-        System.out.println("El DAO recibio " + todo);
         Todo updatedTodo = todosCollection.addTodo(todo);
         return updatedTodo;
     }
 
     @Override
     public Optional<Todo> findById(Integer id) {
-        return Optional.empty();
+        Optional<Todo> foundTodo = todosCollection.getTodos().stream()
+                .filter(td -> td.getId() == id).findFirst();
+
+        return foundTodo;
     }
 
     @Override
@@ -35,12 +38,29 @@ public class TodoDAOCollectionImpl implements TodoDAO {
     }
 
     @Override
-    public void delete(Todo todo) {
-
+    public boolean delete(Todo todo) {
+        return todosCollection.deleteTodo(todo);
     }
 
     @Override
     public boolean existsById(Integer id) {
-        return false;
+        Optional<Todo> foundTodo = todosCollection.getTodos().stream()
+                .filter(td -> td.getId() == id).findFirst();
+
+        return foundTodo.isPresent();
+    }
+
+    @Override
+    public Optional<Todo> updateStatus(int id, Boolean status) {
+        Optional<Todo> todo = findById(id);
+
+        if (todo.isPresent()) {
+            todo.get().setDone(status);
+
+            if (status) todo.get().setCompletedDate(LocalDateTime.now());
+            else        todo.get().setCompletedDate(null);
+        }
+        
+        return todo;
     }
 }

@@ -40,4 +40,8 @@ public class TodosCollection {
     public int getSize() {
         return todos.size();
     }
+
+    public boolean deleteTodo(Todo todo) {
+        return todos.remove(todo);
+    }
 }
