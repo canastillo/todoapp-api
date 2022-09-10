@@ -1,5 +1,6 @@
 package com.encora.prechoice.todoappapi.controllers;
 
+import com.encora.prechoice.todoappapi.domain.Priority;
 import com.encora.prechoice.todoappapi.domain.Todo;
 import com.encora.prechoice.todoappapi.services.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,13 @@ public class TodoController {
     private TodoService todoService;
 
     @GetMapping()
-    public ResponseEntity<List<Todo>> getTodos() {
-        List<Todo> response = todoService.getTodos();
-        return new ResponseEntity<>(response, HttpStatus.OK);
+    public ResponseEntity<List<Todo>> getTodos(@RequestParam(required = false) String priority) {
+        if(priority != null) {
+            List<Todo> todos = todoService.getTodosByPriority(Priority.valueOf(priority.toUpperCase()));
+            return new ResponseEntity<>(todos, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(todoService.getAllTodos(), HttpStatus.OK);
     }
 
     @PostMapping()
