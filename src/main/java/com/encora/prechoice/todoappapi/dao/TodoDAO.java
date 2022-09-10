@@ -10,8 +10,9 @@ public interface TodoDAO {
     Todo save(Todo todo);
     List<Todo> findAll();
     Optional<Todo> findById(Integer id);
-    List<Todo> findByPriority(Priority priority);
     List<Todo> findByState(boolean state);
+    List<Todo> findByPriority(Priority priority);
+    List<Todo> findDoneByPriority(Priority priority);
     int count();
     boolean delete(Todo todo);
     boolean existsById(Integer id);

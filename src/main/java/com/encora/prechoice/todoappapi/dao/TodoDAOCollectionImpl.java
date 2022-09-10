@@ -37,6 +37,13 @@ public class TodoDAOCollectionImpl implements TodoDAO {
     }
 
     @Override
+    public List<Todo> findByState(boolean state) {
+        List<Todo> todosByState = todosCollection.getTodos().stream()
+                .filter(todo -> todo.getDone() == state).collect(Collectors.toList());
+        return todosByState;
+    }
+
+    @Override
     public List<Todo> findByPriority(Priority priority) {
         List<Todo> todosByPriority = todosCollection.getTodos().stream()
                 .filter(todo -> todo.getPriority().equals(priority)).collect(Collectors.toList());
@@ -44,12 +51,12 @@ public class TodoDAOCollectionImpl implements TodoDAO {
     }
 
     @Override
-    public List<Todo> findByState(boolean state) {
-        List<Todo> todosByState = todosCollection.getTodos().stream()
-                .filter(todo -> todo.getDone() == state).collect(Collectors.toList());
-        return todosByState;
-    }
+    public List<Todo> findDoneByPriority(Priority priority) {
+        List<Todo> doneTodosByPriority = findByState(true).stream()
+                .filter(todo -> todo.getPriority().equals(priority)).collect(Collectors.toList());
 
+        return doneTodosByPriority;
+    }
 
     @Override
     public int count() {
