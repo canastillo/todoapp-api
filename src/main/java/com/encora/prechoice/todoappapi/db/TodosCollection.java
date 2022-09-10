@@ -13,9 +13,51 @@ public class TodosCollection {
     private int lastIndex = 0;
 
     public TodosCollection() {
-        todos.add(new Todo(todos.size() + 1, "Finish react course", Priority.MEDIUM, LocalDateTime.now()));
-        todos.add(new Todo(todos.size() + 1, "Search for OS contributions", Priority.LOW, LocalDateTime.now(), LocalDate.of(2022, 10, 7)));
-        todos.add(new Todo(todos.size() + 1, "Write weekly essay", Priority.HIGH, LocalDateTime.now()));
+        todos.add(new Todo(todos.size() + 1,
+                "Finish react course",
+                Priority.MEDIUM,
+                LocalDateTime.now().minusDays(3).minusMinutes(20),
+                null,
+                LocalDateTime.now(),
+                true
+        ));
+
+        todos.add(new Todo(todos.size() + 1,
+                "Search for OS contributions",
+                Priority.LOW,
+                LocalDateTime.now().minusMinutes(20),
+                LocalDate.of(2022, 10, 7),
+                LocalDateTime.now(),
+                true
+        ));
+
+        todos.add(new Todo(todos.size() + 1,
+                "Write weekly essay",
+                Priority.HIGH,
+                LocalDateTime.now().minusHours(3),
+                null,
+                LocalDateTime.now(),
+                true
+        ));
+
+        /*todos.add(new Todo(todos.size() + 1,
+                "Mock interview",
+                Priority.MEDIUM,
+                LocalDateTime.now().minusMinutes(30)
+        ));
+
+        todos.add(new Todo(todos.size() + 1,
+                "Finish task",
+                Priority.HIGH,
+                LocalDateTime.now().minusMinutes(10)
+        ));
+
+        todos.add(new Todo(todos.size() + 1,
+                "Study for performance interview",
+                Priority.LOW,
+                LocalDateTime.now().minusMinutes(20),
+                LocalDate.of(2022, 10, 7)
+        ));*/
 
         lastIndex = todos.size();
     }

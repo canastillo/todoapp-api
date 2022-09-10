@@ -7,41 +7,29 @@ public class Todo {
     private int id;
     private String name;
     private Priority priority;
-    private Boolean done;
     private LocalDateTime creationDate;
     private LocalDate dueDate;
     private LocalDateTime completedDate;
+    private Boolean done;
 
-    public Todo() {
-        this.done = false;
-        System.out.println("Default constructor");
-    }
+    public Todo() {}
 
-    public Todo(String name, Priority priority, LocalDateTime creationDate) {
-
-        this();
+    public Todo(String name, Priority priority, LocalDateTime creationDate, LocalDate dueDate) {
         this.name = name;
         this.priority = priority;
         this.creationDate = creationDate;
-        System.out.println("Segundo constructor. Name " + name);
-    }
-
-    public Todo(String name, Priority priority, LocalDateTime creationDate, LocalDate dueDate) {
-        this(name, priority, creationDate);
         this.dueDate = dueDate;
-        System.out.println("Tercer constructor. Name " + name);
+        this.done = false;
     }
 
-    public Todo(int id, String name, Priority priority, LocalDateTime creationDate) {
-        this(name, priority, creationDate);
+    public Todo(int id, String name, Priority priority, LocalDateTime creationDate, LocalDate dueDate, LocalDateTime completedDate, Boolean done) {
         this.id = id;
-        System.out.println("Cuarto constructor. Name " + name);
-    }
-
-    public Todo(int id, String name, Priority priority, LocalDateTime creationDate, LocalDate dueDate) {
-        this(name, priority, creationDate, dueDate);
-        this.id = id;
-        System.out.println("Quinto constructor. Name " + name);
+        this.name = name;
+        this.priority = priority;
+        this.creationDate = creationDate;
+        this.dueDate = dueDate;
+        this.completedDate = completedDate;
+        this.done = done;
     }
 
     public int getId() {
