@@ -23,6 +23,15 @@ public class TodosCollection {
         ));
 
         todos.add(new Todo(todos.size() + 1,
+                "Mock interview",
+                Priority.MEDIUM,
+                LocalDateTime.now().minusMinutes(30),
+                LocalDate.of(2022, 10, 24),
+                null,
+                false
+        ));
+
+        todos.add(new Todo(todos.size() + 1,
                 "Search for OS contributions",
                 Priority.LOW,
                 LocalDateTime.now().minusMinutes(20),
@@ -40,24 +49,23 @@ public class TodosCollection {
                 true
         ));
 
-        /*todos.add(new Todo(todos.size() + 1,
-                "Mock interview",
-                Priority.MEDIUM,
-                LocalDateTime.now().minusMinutes(30)
-        ));
-
         todos.add(new Todo(todos.size() + 1,
                 "Finish task",
                 Priority.HIGH,
-                LocalDateTime.now().minusMinutes(10)
+                LocalDateTime.now().minusMinutes(10),
+                null,
+                null,
+                false
         ));
 
         todos.add(new Todo(todos.size() + 1,
                 "Study for performance interview",
                 Priority.LOW,
                 LocalDateTime.now().minusMinutes(20),
-                LocalDate.of(2022, 10, 7)
-        ));*/
+                LocalDate.of(2022, 10, 7),
+                null,
+                false
+        ));
 
         lastIndex = todos.size();
     }
